@@ -11,7 +11,6 @@ const server = http.createServer(app);
 const peerServer = ExpressPeerServer(server, {
     proxied: true,
     debug: true,
-    path: '/myapp' // The path for your PeerJS clients
 });
 
 app.use('/peerjs', peerServer);
@@ -23,4 +22,5 @@ server.listen(port, () => {
 peerServer.on("connection",(connection) => {
     console.log(`peer connected: port ${connection.getId()}`);
 });
+
 
