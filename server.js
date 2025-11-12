@@ -9,8 +9,6 @@ const port = process.env.PORT || 9000;
 const server = http.createServer(app);
 
 const peerServer = ExpressPeerServer(server, {
-    proxied: true,
-    debug: false,
     path: "/"
 });
 
@@ -23,6 +21,7 @@ server.listen(port, () => {
 peerServer.on("connection",(connection) => {
     console.log(`peer connected: port ${connection.getId()}`);
 });
+
 
 
 
