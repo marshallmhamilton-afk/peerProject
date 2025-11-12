@@ -19,3 +19,7 @@ app.use('/peerjs', peerServer);
 server.listen(port, () => {
     console.log(`PeerServer running on port ${port}`);
 });
+
+peerServer.on("connection",(connection) => {
+    console.log(`peer connected: port ${connection.getId()}`);
+});
