@@ -12,7 +12,7 @@ const peerServer = ExpressPeerServer(server, {
     path: "/"
 });
 
-app.use('/peerjs', peerServer);
+app.use('/', peerServer);
 console.log(`path is: ${process.env.PATH}`)
 server.listen(port, () => {
     console.log(`PeerServer running on port ${port}`);
@@ -21,6 +21,7 @@ server.listen(port, () => {
 peerServer.on("connection",(connection) => {
     console.log(`peer connected: port ${connection.getId()}`);
 });
+
 
 
 
