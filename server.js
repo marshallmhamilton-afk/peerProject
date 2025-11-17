@@ -1,30 +1,14 @@
-const express = require('express');
-const http = require('http');
-const { ExpressPeerServer } = require('peer');
+import express from 'express';
+import { WebSocketServer } from 'ws';
+import http from 'http';
 
 const app = express();
-// Use process.env.PORT for compatibility with hosting platforms
-const port = process.env.PORT || 9000;
-
 const server = http.createServer(app);
+const webSocketServer = new WebSocketServer({ server });
 
-const peerServer = ExpressPeerServer(server, {
-    path: "/"
+webSocketServer.on('connection', (client) => {
+  console.log('Client connected');
 });
 
-app.use('/', peerServer);
-console.log(`path is: ${process.env.PATH}`)
-server.listen(port, () => {
-    console.log(`PeerServer running on port ${port}`);
-});
-
-peerServer.on("connection",(connection) => {
-    console.log(`peer connected: port ${connection.getId()}`);
-});
-
-
-
-
-
-
-
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => console.log(`Server running on ${PORT}`));
