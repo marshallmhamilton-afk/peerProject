@@ -12,5 +12,6 @@
   "type": "commonjs",
   "dependencies": {
     "ws": "^8.18.3"
-  }
+  },
+  "start":"node server.js"
 }
